@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/about'
   resources :products
   resources :categories
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -11,4 +12,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  get 'about', to: 'pages#about'
 end
