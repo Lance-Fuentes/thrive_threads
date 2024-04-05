@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :user_images
+  has_many_attached :images
   validates :total, :description, :status, presence: true
 end
