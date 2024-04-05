@@ -3,11 +3,11 @@
 one:
   name: MyString
   price: 1.5
-  description: MyString
+  description: MyText
   category: one
 
 two:
   name: MyString
   price: 1.5
-  description: MyString
+  description: MyText
   category: two
