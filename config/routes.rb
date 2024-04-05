@@ -14,4 +14,11 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get 'about', to: 'pages#about'
+
+  root 'pages#index'
+
+  resources :categories do
+    resources :products, only: [:index]
+  end
+
 end
