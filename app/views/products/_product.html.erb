@@ -19,4 +19,13 @@
     <%= product.category_id %>
   </p>
 
+  <p>
+    <strong>Image:</strong>
+    <% if product.images.attached? %>
+      <%= image_tag rails_blob_path(product.images.first) %>
+    <% else %>
+      No image available
+    <% end %>
+  </p>
+
 </div>
