@@ -1,6 +1,14 @@
 /*---------------------
   Hero
 -----------------------*/
+$heading-color: #fff;
+$primary-color: #fff;
+@mixin transition($properties, $duration) {
+    -webkit-transition: $properties $duration;
+    -moz-transition: $properties $duration;
+    -o-transition: $properties $duration;
+    transition: $properties $duration;
+  }
 .hero__slider {
 
     &.owl-carousel {

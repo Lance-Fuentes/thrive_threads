@@ -1,6 +1,15 @@
 /*---------------------
   Header
 -----------------------*/
+$heading-color: #fff;
+$white-color: #fff;
+$primary-color: #fff;
+@mixin transition($properties, $duration) {
+    -webkit-transition: $properties $duration;
+    -moz-transition: $properties $duration;
+    -o-transition: $properties $duration;
+    transition: $properties $duration;
+  }
 .header {
     background: $white-color;
 }

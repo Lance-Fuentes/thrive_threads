@@ -1,6 +1,15 @@
 /*---------------------
   Banner
 -----------------------*/
+$heading-color: #fff;
+$white-color: #fff;
+$primary-color: #fff;
+@mixin transition($properties, $duration) {
+  -webkit-transition: $properties $duration;
+  -moz-transition: $properties $duration;
+  -o-transition: $properties $duration;
+  transition: $properties $duration;
+}
 .blog {
   padding-bottom: 55px;
 }

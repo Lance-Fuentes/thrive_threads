@@ -1,6 +1,16 @@
 /*---------------------
   Blog Hero
 -----------------------*/
+$heading-color: #fff;
+$white-color: #fff;
+@mixin transition($properties, $duration) {
+    -webkit-transition: $properties $duration;
+    -moz-transition: $properties $duration;
+    -o-transition: $properties $duration;
+    transition: $properties $duration;
+  }
+  
+
 .blog-hero {
     background: #f3f2ee;
     padding-top: 125px;

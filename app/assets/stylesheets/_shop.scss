@@ -1,6 +1,15 @@
 /*---------------------
   Shop
 -----------------------*/
+$heading-color: #fff;
+$white-color: #fff;
+$heading-color: #fff;
+@mixin transition($properties, $duration) {
+    -webkit-transition: $properties $duration;
+    -moz-transition: $properties $duration;
+    -o-transition: $properties $duration;
+    transition: $properties $duration;
+  }
 .shop__sidebar {
     padding-right: 20px;
 }
