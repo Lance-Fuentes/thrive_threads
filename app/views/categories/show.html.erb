@@ -3,5 +3,6 @@
 <%= render @category %>
 
 <div>
+  <%= link_to "Women's Products", category_products_path(@category.id) %>
   <%= link_to "Back to categories", categories_path %>
 </div>
