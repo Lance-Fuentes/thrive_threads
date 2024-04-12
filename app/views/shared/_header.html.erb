@@ -61,7 +61,9 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <%= link_to root_path do %>
+                        <%= image_tag('ThrivethreadsTM.png', alt: 'Logo') %>
+                    <% end %>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -83,7 +85,16 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="<%= asset_path('icon/search.png') %>" alt=""></a>
+                        <%= form_tag(search_path, method: "get", id: "searchForm") do %>
+                            <input id="searchInput" type="text" name="q" placeholder="Search...">
+                            <select name="category">
+                                <option value="">All Categories</option>
+                                <% Category.all.each do |category| %>
+                                    <option value="<%= category.id %>"><%= category.name %></option>
+                                <% end %>
+                            </select>
+                            <button type="submit"><img src="<%= asset_path('icon/search.png') %>" alt="Search"></button>
+                        <% end %>
                         <a href="#"><img src="<%= asset_path('icon/heart.png') %>" alt=""></a>
                         <a href="#"><img src="<%= asset_path('icon/cart.png') %>" alt=""> <span>0</span></a>
                         <div class="price">$0.00</div>
@@ -93,4 +104,10 @@
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>
     </header>
+<script>
+    document.getElementById("searchSubmit").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        document.getElementById("searchForm").submit(); // Submit the form
+    });
+</script>
     <!-- Header Section End -->

@@ -36,6 +36,15 @@ class ProductsController < InheritedResources::Base
     @products = @products.page(params[:page]).per(1)
   end
 
+  def search
+    @products = Product.all
+    @products = @products.where("name LIKE ? OR description LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%") if params[:q].present?
+    @products = @products.where(category_id: params[:category]) if params[:category].present?
+
+    render 'search'
+  end
+
+
 
   def show
     @product = Product.find(params[:id])

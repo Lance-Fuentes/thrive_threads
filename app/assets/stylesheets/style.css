@@ -404,7 +404,8 @@ ol {
 }
 
 .header__logo {
-	padding: 30px 0;
+		width: 50%;
+		height: auto;
 }
 
 .header__logo a {
@@ -504,14 +505,22 @@ ol {
 }
 
 .header__nav__option {
-	text-align: right;
-	padding: 30px 0;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    padding: 30px 0;
+}
+
+.header__nav__option form {
+    flex: 1; /* This will make the search form take up the remaining space */
+    margin-right: 26px; /* Add margin to separate the search form from other icons */
+    position: relative;
 }
 
 .header__nav__option a {
-	display: inline-block;
-	margin-right: 26px;
-	position: relative;
+    display: inline-block;
+    margin-right: 26px;
+    position: relative;
 }
 
 .header__nav__option a span {
