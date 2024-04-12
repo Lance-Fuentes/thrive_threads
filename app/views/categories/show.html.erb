@@ -1,8 +1,10 @@
-<p style="color: green"><%= notice %></p>
+<%= render_breadcrumbs %>
+<h1>Products for <%= @category.name %></h1>
 
-<%= render @category %>
-
-<div>
-  <%= link_to "Women's Products", category_products_path(@category.id) %>
-  <%= link_to "Back to categories", categories_path %>
-</div>
+<% @category.products.each do |product| %>
+  <div>
+    <h3><%= product.name %></h3>
+    <p><%= product.description %></p>
+    <%= link_to "Show this product", product %>
+  </div>
+<% end %>

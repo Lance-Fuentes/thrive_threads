@@ -1,9 +1,12 @@
 <h1>Categories</h1>
 
 <ul>
+  <li>
+    <%= link_to "All Products", products_path%>
+  </li>
   <% @categories.each do |category| %>
     <li>
-      <%= link_to "#{category.name} Products", category_products_path(category) %>
+      <%= link_to "#{category.name} Products", category %>
     </li>
   <% end %>
 </ul>
