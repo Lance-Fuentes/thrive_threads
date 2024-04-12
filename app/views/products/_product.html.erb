@@ -16,7 +16,7 @@
 
   <p>
     <strong>Category:</strong>
-    <%= product.category_id %>
+    <%= product.category.name %>
   </p>
 
   <p>
@@ -25,7 +25,6 @@
       <div class="product-images">
         <% product.images.each do |image| %>
           <%= image_tag rails_blob_path(image.file) %>
-          <%= image.file.filename %>
         <% end %>
       </div>
     <% else %>
