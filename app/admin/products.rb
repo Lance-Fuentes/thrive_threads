@@ -21,9 +21,7 @@ ActiveAdmin.register Product do
     f.inputs
     f.inputs do
       f.input :images, as: :file, input_html: { multiple: true }, hint: f.object.images.present? ? f.object.images.map { |image| image_tag(image) }.join.html_safe : content_tag(:span, "")
-
     end
-
     f.actions
   end
 
@@ -36,12 +34,10 @@ ActiveAdmin.register Product do
       row :images do |product|
         product.images.each do |image|
           span do
-            image_tag(image)
+            image_tag url_for(image.file)
           end
         end
       end
     end
   end
-
-
 end

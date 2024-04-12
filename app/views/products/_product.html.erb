@@ -20,11 +20,16 @@
   </p>
 
   <p>
-    <strong>Image:</strong>
-    <% if product.images.attached? %>
-      <%= image_tag rails_blob_path(product.images.first) %>
+    <strong>Images:</strong>
+    <% if product.images.present? %>
+      <div class="product-images">
+        <% product.images.each do |image| %>
+          <%= image_tag rails_blob_path(image.file) %>
+          <%= image.file.filename %>
+        <% end %>
+      </div>
     <% else %>
-      No image available
+      No images available
     <% end %>
   </p>
 
