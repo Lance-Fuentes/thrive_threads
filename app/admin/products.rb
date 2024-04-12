@@ -54,7 +54,7 @@ ActiveAdmin.register Product do
     end
 
     def product_params
-      params.require(:product).permit(:name, :price, :description, :category_id, images_attributes: [:id, :file, :_destroy])
+      params.require(:product).permit(:name, :price, :description, :category_id, :on_sale, images_attributes: [:id, :file, :_destroy])
     end
   end
 
@@ -63,6 +63,7 @@ ActiveAdmin.register Product do
       row :name
       row :price
       row :description
+      row :on_sale
       row :category do |product|
         product.category.name if product.category
       end

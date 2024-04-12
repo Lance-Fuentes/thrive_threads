@@ -70,6 +70,14 @@
                             <li><%= link_to 'Home', root_path, class: '' + (current_page?(root_path) ? ' active' : '') %></li>
                             <li><%= link_to 'About Us', about_path, class: '' + (current_page?(about_path) ? ' active' : '') %></li>
                             <li><%= link_to 'Contact Us', contact_path, class: '' + (current_page?(contact_path) ? ' active' : '') %></li>
+                            <li><a href="#">Shop</a>
+                                <ul class="dropdown">
+                                    <li><%= link_to 'Categories', categories_path, class: '' + (current_page?(categories_path) ? ' active' : '') %></li>
+                                    <li><%= link_to 'On Sale', products_path(sale: true), class: '' + (params[:sale] == 'true' ? ' active' : '') %></li>
+                                    <li><%= link_to 'New', products_path(new: true), class: '' + (params[:new] == 'true' ? ' active' : '') %></li>
+                                    <li><%= link_to 'Recent Update', products_path(updated: true), class: '' + (params[:updated] == 'true' ? ' active' : '') %></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>

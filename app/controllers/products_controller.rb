@@ -1,19 +1,29 @@
 class ProductsController < InheritedResources::Base
 
   def index
+    @products = Product.all
+    add_breadcrumb "Home", :root_path
+
     if params[:category_id]
       @category = Category.find(params[:category_id])
       @products = @category.products
-      add_breadcrumb "Home", :root_path
       add_breadcrumb "Categories", :categories_path
       add_breadcrumb @category.name, category_path(@category)
       add_breadcrumb "Products", category_products_path(@category)
+    elsif params[:sale] == 'true'
+      @products = @products.on_sale
+      add_breadcrumb 'On Sale Products', products_path(sale: true)
+    elsif params[:new] == 'true'
+      @products = Product.where('created_at >= ?', 60.minutes.ago)
+      add_breadcrumb 'New Products', products_path(new: true)
+    elsif params[:updated] == 'true'
+      @products = Product.where('updated_at >= ?', 60.minutes.ago)
+      add_breadcrumb 'Recently Updated Products', products_path(updated: true)
     else
-      @products = Product.all
-      add_breadcrumb "Home", :root_path
       add_breadcrumb "All Products", products_path
     end
   end
+
 
   def show
     @product = Product.find(params[:id])
