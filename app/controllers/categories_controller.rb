@@ -2,7 +2,7 @@ class CategoriesController < InheritedResources::Base
 
   def show
     @category = Category.find(params[:id])
-    @products = @category.products
+    @products = @category.products.page(params[:page]).per(1)
     add_breadcrumb "Home", :root_path
     add_breadcrumb "Categories", :categories_path
     add_breadcrumb @category.name, category_path(@category)

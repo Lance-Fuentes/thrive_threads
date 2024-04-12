@@ -14,6 +14,9 @@ gem 'bootstrap'
 #breadcrum
 gem "breadcrumbs_on_rails"
 
+#pagination
+gem 'kaminari'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
 

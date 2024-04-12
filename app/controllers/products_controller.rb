@@ -32,6 +32,8 @@ class ProductsController < InheritedResources::Base
     else
       add_breadcrumb "All Products", products_path
     end
+
+    @products = @products.page(params[:page]).per(1)
   end
 
 
