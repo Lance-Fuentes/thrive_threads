@@ -50,7 +50,7 @@ class CheckoutController < ApplicationController
 
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ["card"],
-      success_url: checkout_success_url,
+      success_url: checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: checkout_cancel_url,
       mode: "payment",
       line_items: line_items
@@ -61,6 +61,9 @@ class CheckoutController < ApplicationController
 
   def success
     #success payment
+    session_id = params[:session_id]
+    @session = Stripe::Checkout::Session.retrieve(session_id)
+    @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
   end
 
   def cancel
