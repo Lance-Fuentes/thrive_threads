@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'pages/about'
   resources :products
   resources :categories
+  resources :cart, only: [:create, :destroy]
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

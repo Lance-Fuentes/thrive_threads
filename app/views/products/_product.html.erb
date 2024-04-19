@@ -1,5 +1,18 @@
 <div id="<%= dom_id product %>">
   <p>
+    <strong>Images:</strong>
+    <% if product.images.present? %>
+      <div class="product-images">
+        <% product.images.each do |image| %>
+          <%= image_tag rails_blob_path(image.file), style: "width: 200px; height: auto;" %>
+        <% end %>
+      </div>
+    <% else %>
+      No images available
+    <% end %>
+  </p>
+
+  <p>
     <strong>Name:</strong>
     <%= product.name %>
   </p>
@@ -19,17 +32,14 @@
     <%= product.category.name %>
   </p>
 
-  <p>
-    <strong>Images:</strong>
-    <% if product.images.present? %>
-      <div class="product-images">
-        <% product.images.each do |image| %>
-          <%= image_tag rails_blob_path(image.file) %>
-        <% end %>
-      </div>
-    <% else %>
-      No images available
+  <% if cart.include?(product) %>
+    <%= button_to cart_path(product), method: :delete do %>
+    Remove from cart ❌
     <% end %>
-  </p>
-
+  <% else %>
+    <%=form_with url: cart_index_path, method: :post do %>
+    <%= hidden_field_tag(:id, product.id)%>
+    <%= button_tag 'Add to cart 🛒' %>
+    <% end %>
+  <% end %>
 </div>
