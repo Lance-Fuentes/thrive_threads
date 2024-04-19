@@ -17,8 +17,15 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
   get '/search', to: 'products#search'
+  get 'shopping_cart', to: 'pages#shopping_cart'
 
   root 'pages#index'
+
+  scope "/checkout" do
+    post "create", to: "checkout#create", as: "checkout_create"
+    get "success", to: "checkout#success", as: "checkout_success"
+    get "cancel", to: "checkout#cancel", as: "checkout_cancel"
+  end
 
   resources :categories do
     resources :products, only: [:index]

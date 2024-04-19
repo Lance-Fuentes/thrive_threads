@@ -1,0 +1,145 @@
+<h1>Cart</h1>
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Shopping Cart</h4>
+                    <div class="breadcrumb__links">
+                      <%= render_breadcrumbs %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% cart = session[:shopping_cart] %>
+  <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if cart.present? %>
+                                  <% cart.each do |item_id| %>
+                                    <% product = Product.find(item_id) %>
+                                    <tr>
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__pic">
+                                                <% if product.images.present? %>
+                                                <div class="product-images">
+                                                    <% product.images.each do |image| %>
+                                                    <%= image_tag rails_blob_path(image.file), style: "width: 200px; height: auto;" %>
+                                                    <% end %>
+                                                </div>
+                                                <% else %>
+                                                No images available
+                                                <% end %>
+                                            </div>
+                                            <div class="product__cart__item__text">
+                                                <h6><%= product.name %></h6>
+                                                <h5>$<%= product.price %></h5>
+                                            </div>
+                                        </td>
+                                        <td class="quantity__item">
+                                            <div class="quantity">
+                                                <div class="pro-qty-2">
+                                                    <% quantity = session[:shopping_cart][product.id].to_i %>
+                                                    <!-- Input field for quantity -->
+                                                    <input type="number" class="quantity-input" value="1" min="1">
+                                                    <!-- Up button for increasing quantity -->
+                                                    <button class="quantity-up">+</button>
+                                                    <!-- Down button for decreasing quantity -->
+                                                    <button class="quantity-down">-</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price">$ <%= (product.price * quantity).to_f %></td>
+                                        <td class="cart__close">
+                                        <%= button_to cart_path(id: product.id), method: :delete, class: "btn-delete" do %>
+                                            X
+                                        <% end %>
+                                        </td>
+                                    </tr>
+                                  <% end %>
+                                  <% else %>
+                                    <p> No items in your cart</p>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="#">Continue Shopping</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn update__btn">
+                                <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart__discount">
+                        <h6>Discount codes</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Coupon code">
+                            <button type="submit">Apply</button>
+                        </form>
+                    </div>
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li>Subtotal <span>$ 169.50</span></li>
+                            <li>Total <span>$ 169.50</span></li>
+                        </ul>
+                        <%= form_with url: checkout_create_path, remote: true, class: "primary-btn" do %>
+                            <%= button_tag 'Proceed to checkout', type: "submit" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+          function updateTotalPrice(productId, quantity) {
+    var price = parseFloat($("#product-price-" + productId).text().replace("$ ", ""));
+    var total = price * quantity;
+    $("#product-total-" + productId).text("$ " + total.toFixed(2));
+  }
+$(document).ready(function() {
+  // Increase quantity
+  $('.quantity-up').click(function() {
+    var input = $(this).closest('.pro-qty-2').find('.quantity-input');
+    var newValue = parseInt(input.val()) + 1;
+    input.val(newValue);
+  });
+
+  // Decrease quantity
+  $('.quantity-down').click(function() {
+    var input = $(this).closest('.pro-qty-2').find('.quantity-input');
+    var newValue = parseInt(input.val()) - 1;
+    if (newValue >= 1) {
+      input.val(newValue);
+    }
+  });
+});
+
+
+
+    </script>

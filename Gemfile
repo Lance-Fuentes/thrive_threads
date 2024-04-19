@@ -11,6 +11,11 @@ gem 'sassc-rails'
 #bootstrap:
 gem 'bootstrap'
 
+gem 'stripe'
+
+#close icon
+gem 'font-awesome-sass'
+
 #breadcrum
 gem "breadcrumbs_on_rails"
 

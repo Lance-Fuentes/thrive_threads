@@ -30,10 +30,11 @@ class ProductsController < InheritedResources::Base
       add_breadcrumb 'Recently Updated Products', products_path(updated: true)
 
     else
+      add_breadcrumb "Categories", :categories_path
       add_breadcrumb "All Products", products_path
     end
 
-    @products = @products.page(params[:page]).per(1)
+    @products = @products.page(params[:page]).per(12)
   end
 
   def search

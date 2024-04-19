@@ -27,7 +27,6 @@
         </div>
     </div>
     <!-- Offcanvas Menu End -->
-    <%= debug session[:shopping_cart]%>
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -97,7 +96,7 @@
                             <button type="submit"><img src="<%= asset_path('icon/search.png') %>" alt="Search"></button>
                         <% end %>
                         <a href="#"><img src="<%= asset_path('icon/heart.png') %>" alt=""></a>
-                        <a href="#"><img src="<%= asset_path('icon/cart.png') %>" alt=""> <span>0</span></a>
+                        <%= link_to shopping_cart_path do %><img src="<%= asset_path('icon/cart.png') %>" alt=""><span><%= session[:shopping_cart].size %></span><% end %>
                         <div class="price">$0.00</div>
                     </div>
                 </div>

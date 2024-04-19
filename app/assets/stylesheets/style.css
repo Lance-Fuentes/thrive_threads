@@ -3858,3 +3858,13 @@ ol {
 		height: 250px;
 	}
 }
+
+.btn-delete {
+	background: none;
+	border: none;
+	padding: 0;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+  }
+  
