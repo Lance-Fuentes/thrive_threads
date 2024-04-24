@@ -57,10 +57,6 @@
                                                     <% quantity = session[:shopping_cart][product.id].to_i %>
                                                     <!-- Input field for quantity -->
                                                     <input type="number" class="quantity-input" value="1" min="1">
-                                                    <!-- Up button for increasing quantity -->
-                                                    <button class="quantity-up">+</button>
-                                                    <!-- Down button for decreasing quantity -->
-                                                    <button class="quantity-down">-</button>
                                                 </div>
                                             </div>
                                         </td>
@@ -116,30 +112,3 @@
     <!-- Shopping Cart Section End -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-          function updateTotalPrice(productId, quantity) {
-    var price = parseFloat($("#product-price-" + productId).text().replace("$ ", ""));
-    var total = price * quantity;
-    $("#product-total-" + productId).text("$ " + total.toFixed(2));
-  }
-$(document).ready(function() {
-  // Increase quantity
-  $('.quantity-up').click(function() {
-    var input = $(this).closest('.pro-qty-2').find('.quantity-input');
-    var newValue = parseInt(input.val()) + 1;
-    input.val(newValue);
-  });
-
-  // Decrease quantity
-  $('.quantity-down').click(function() {
-    var input = $(this).closest('.pro-qty-2').find('.quantity-input');
-    var newValue = parseInt(input.val()) - 1;
-    if (newValue >= 1) {
-      input.val(newValue);
-    }
-  });
-});
-
-
-
-    </script>
