@@ -134,3 +134,26 @@ Product.create(
   Image.create(product: product).file.attach(io: File.open('storage/images/10_hl_heart2.jpg'), filename: '10_hl_heart2.jpg', content_type: 'image/jpg')
   Image.create(product: product).file.attach(io: File.open('storage/images/10_hl_heart.jpg'), filename: '10_hl_heart.jpg', content_type: 'image/jpg')
 end
+
+# db/seeds.rb
+
+# Seed provinces
+provinces = [
+  { name: 'Alberta' },
+  { name: 'British Columbia' },
+  { name: 'Manitoba' },
+  { name: 'New Brunswick' },
+  { name: 'Newfoundland and Labrador' },
+  { name: 'Nova Scotia' },
+  { name: 'Ontario' },
+  { name: 'Prince Edward Island' },
+  { name: 'Quebec' },
+  { name: 'Saskatchewan' },
+  { name: 'Northwest Territories' },
+  { name: 'Nunavut' },
+  { name: 'Yukon' }
+]
+
+provinces.each do |province|
+  Province.create!(province)
+end

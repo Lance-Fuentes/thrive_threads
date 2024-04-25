@@ -52,13 +52,13 @@
                                             </div>
                                         </td>
                                         <td class="quantity__item">
-                                            <div class="quantity">
-                                                <div class="pro-qty-2">
-                                                    <% quantity = session[:shopping_cart][product.id].to_i %>
-                                                    <!-- Input field for quantity -->
-                                                    <input type="number" class="quantity-input" value="1" min="1">
-                                                </div>
+                                        <div class="quantity">
+                                            <div class="pro-qty-2">
+                                                <% quantity = OrderItem.find_by(product_id: product.id, order_id: current_order.id)&.quantity || 1 %>
+                                                <!-- Input field for quantity -->
+                                                <input type="number" class="quantity-input" value="<%= quantity %>" min="1">
                                             </div>
+                                        </div>
                                         </td>
                                         <td class="cart__price">$ <%= (product.price * quantity).to_f %></td>
                                         <td class="cart__close">
