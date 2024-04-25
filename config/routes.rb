@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    password: 'users/passwords'
+  }
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   get 'pages/about'
   resources :products
   resources :categories
-  resources :cart, only: [:create, :destroy]
+  resources :cart, only: [:create, :destroy, :update]
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -18,6 +26,8 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact'
   get '/search', to: 'products#search'
   get 'shopping_cart', to: 'pages#shopping_cart'
+  put 'update_cart', to: 'cart#update_cart', as: 'update_cart'
+
 
   root 'pages#index'
 

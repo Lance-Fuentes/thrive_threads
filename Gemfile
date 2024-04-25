@@ -2,11 +2,14 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+gem 'faker'
+
 gem 'activeadmin'
 # Plus integrations with:
 gem 'devise'
 gem 'sassc'
 gem 'sassc-rails'
+gem 'turbo-rails'
 
 #bootstrap:
 gem 'bootstrap'
