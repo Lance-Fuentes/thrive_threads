@@ -30,6 +30,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <% total = 0 %>
                                 <% if cart.present? %>
                                   <% cart.each do |item_id| %>
                                     <% product = Product.find(item_id) %>
@@ -56,10 +57,12 @@
                                             <div class="pro-qty-2">
                                                 <% quantity = OrderItem.find_by(product_id: product.id, order_id: current_order.id)&.quantity || 1 %>
                                                 <!-- Input field for quantity -->
-                                                <input type="number" class="quantity-input" value="<%= quantity %>" min="1">
+                                                <input type="number" class="quantity-input" name="quantity_<%= product.id %>" value="<%= quantity %>" min="1">
+
                                             </div>
                                         </div>
                                         </td>
+                                        <% total = total + product.price %>
                                         <td class="cart__price">$ <%= (product.price * quantity).to_f %></td>
                                         <td class="cart__close">
                                         <%= button_to cart_path(id: product.id), method: :delete, class: "btn-delete" do %>
@@ -81,9 +84,12 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn update__btn">
-                                <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
-                            </div>
+<div class="continue__btn update__btn">
+  <%= form_with url: update_cart_path, method: :patch, class: "update-cart-form" do %>
+    <%= submit_tag "Update cart", class: "update-cart-btn" %>
+  <% end %>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -98,8 +104,8 @@
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 169.50</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <li>Subtotal <span>$ <%= total %></span></li>
+                            <li>Total <span>$ <%= total %></span></li>
                         </ul>
                         <%= form_with url: checkout_create_path, remote: true, class: "primary-btn" do %>
                             <%= button_tag 'Proceed to checkout', type: "submit" %>

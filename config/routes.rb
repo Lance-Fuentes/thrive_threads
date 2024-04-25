@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact'
   get '/search', to: 'products#search'
   get 'shopping_cart', to: 'pages#shopping_cart'
-  put 'update_cart', to: 'cart#update_cart', as: 'update_cart'
+  patch '/update_cart', to: 'cart#update', as: 'update_cart'
 
 
   root 'pages#index'

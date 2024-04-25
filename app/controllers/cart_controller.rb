@@ -20,26 +20,14 @@ class CartController < ApplicationController
 
   def update
     cart = session[:shopping_cart] || []
-    cart.each do |item_id, quantity|
+    cart.each do |item_id|
+      quantity = params["quantity_#{item_id}"].to_i
       order_item = OrderItem.find_or_initialize_by(product_id: item_id, order_id: current_order.id)
-      order_item.quantity = quantity.to_i
-      order_item.save
-    end
-    flash[:notice] = "Cart updated successfully"
-    redirect_back(fallback_location: root_path)
-  end
-
-  def update_cart
-    params[:products].each do |product_params|
-      product_id = product_params[:id]
-      quantity = product_params[:quantity].to_i
-      order_item = current_order.order_items.find_or_initialize_by(product_id: product_id)
       order_item.quantity = quantity
       order_item.save
     end
     flash[:notice] = "Cart updated successfully"
     redirect_back(fallback_location: root_path)
   end
-
 
 end

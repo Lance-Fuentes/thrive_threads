@@ -13,6 +13,9 @@ class CheckoutController < ApplicationController
     line_items = @products.map do |product|
       {
         quantity: 1,
+        adjustable_quantity: {
+          enabled: true,
+        },
         price_data: {
           unit_amount: (product.price* 100).to_i,
           currency: "cad",
